@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
             Icons.star,
             color: Color.fromARGB(255, 32, 223, 153),
           ),
-          const Text('70'),
+          const Text('50'),
         ],
       ),
     );
