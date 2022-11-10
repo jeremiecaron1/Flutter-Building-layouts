@@ -46,11 +46,7 @@ class MyApp extends StatelessWidget {
           //Container and padded along each edge by 32 pixels.
           //Add the title section to the app body like this:
 
-          Icon(
-            Icons.star,
-            color: Color.fromARGB(255, 32, 223, 153),
-          ),
-          const Text('50'),
+          const FavoriteWidget(),
         ],
       ),
     );
@@ -113,5 +109,55 @@ class MyApp extends StatelessWidget {
         )
       ],
     );
+  }
+}
+
+class FavoriteWidget extends StatefulWidget {
+  const FavoriteWidget({super.key});
+
+  @override
+  State<FavoriteWidget> createState() => _FavoriteWidgetState();
+}
+
+class _FavoriteWidgetState extends State<FavoriteWidget> {
+  bool _isFavorited = true;
+  int _favoriteCount = 41;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(0),
+          child: IconButton(
+            alignment: Alignment.centerRight,
+            icon: (_isFavorited
+                ? const Icon(Icons.star)
+                : const Icon(Icons.star_border)),
+            color: Colors.red[500],
+            onPressed: _toggleFavorite,
+          ),
+        ),
+        SizedBox(
+          width: 18,
+          child: SizedBox(
+            child: Text('$_favoriteCount'),
+          ),
+        )
+      ],
+    );
+  }
+
+  void _toggleFavorite() {
+    setState(() {
+      if (_isFavorited) {
+        _favoriteCount -= 1;
+        _isFavorited = false;
+      } else {
+        _favoriteCount += 1;
+        _isFavorited = true;
+      }
+    });
   }
 }
